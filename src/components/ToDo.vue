@@ -1,14 +1,15 @@
 <template>
   <div class="hello">
     <div class="holder">
+      <p>These are the things you'll have to do</p>
       <ul>
-        <li v-for="(data, index) in todos" :key='index'>{{ index }}. {{ data.todo }}</li>
+        <li v-for="(data, index) in todos" :key='index'>{{ data.todo }}</li>
       </ul> 
 
       <p v-if="todos.length == 0">You're free!</p>
       <p v-else>Get your shit together and finish some stuff!</p>
 
-      <div v-bind:class="{ alert: !showAlert }"></div>
+
     </div>
   </div>
 </template>
@@ -21,8 +22,7 @@ export default {
       todos: [
         { "todo": "Specialize me"},
         { "todo": "Sector verdieping"}
-      ],
-      showAlert: true
+      ]
     }
   }
 }
