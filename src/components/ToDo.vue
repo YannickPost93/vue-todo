@@ -1,18 +1,26 @@
 <template>
   <div class="hello">
     <div class="holder">
-      <transition name='alert-in'>
-        <p class="alert" v-if="errors.has('todo')">{{ errors.first('todo') }}</p>
+      <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
+          <p class="alert" v-if="errors.has('todo')">{{ errors.first('todo') }}</p>
       </transition>
     
       <form @submit.prevent="addToDo">
+        
+        
         <input type="text" placeholder="Create a new thing to do.." v-model="todo" v-validate="'min:2'" name="todo"/>
+      
       <!-- <input type="checkbox" id="checkbox" v-model="checked">Important! -->
-     
+      
       </form>
       <p>These are the things you'll have to do</p>
       <ul>
-        <li v-for="(data, index) in todos" :key='index'>{{ data.todo }}</li>
+        <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+          <li v-for="(data, index) in todos" :key='index'>
+            {{ data.todo }}
+            <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+          </li>
+        </transition-group>
       </ul> 
 
       <p v-if="todos.length == 0">You're free!</p>
@@ -43,11 +51,14 @@ export default {
           this.todos.push({todo: this.todo}),
           this.todo = '';
         } else {
-          console.log('notValid');
+          // console.log('notValid');
         }
       });
  
       // console.log('Checkbox is '+this.checked);
+    },
+    remove(id) {
+      this.todos.splice(id,1);
     }
   }
 }
