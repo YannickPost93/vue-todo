@@ -10,7 +10,7 @@
         
         <input type="text" placeholder="Create a new thing to do.." v-model="todo" v-validate="'min:2'" name="todo"/>
       
-      <!-- <input type="checkbox" id="checkbox" v-model="checked">Important! -->
+     
       
       </form>
       <p>These are the things you'll have to do</p>
